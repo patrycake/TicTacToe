@@ -41,9 +41,11 @@ class Player{
     bool validPlacement(int rowUser, int colUser){
        
         if(rowUser >= 3 || rowUser < 0 || colUser >= 3 || colUser < 0){
+            std:: cout << "Error: values greater than 2 or smaller that 0 are invalid" << std::endl;
             return false;
         }
         if(!board.checkPlace(rowUser, colUser)){
+            std:: cout << "Error: that row and col are already used" << std::endl;
             return false;
         }
         return true;

@@ -20,33 +20,63 @@ class Board{
         game.assign(3, std::vector<Place>(3, place));
     } 
     void checkStatus(){
-       // std::cout << gameStatus << " ";
+       bool tieGame = true;
         
-        for(int row = 0; row < 3; row++){
+        for(int i = 0; i < 3; i++){
             //check the rows
             
-            if(game[row][0].getStatus() == game[row][1].getStatus() && game[row][1].getStatus() == game[row][2].getStatus()){
-                //std::cout << row << " " << game[row][0].getStatus() << " " << game[row][1].getStatus() << " " << game[row][2].getStatus() << std::endl;
-                if(game[row][0].getStatus() == 'x'){
+            if(game[i][0].getStatus() == game[i][1].getStatus() && game[i][1].getStatus() == game[i][2].getStatus()){
+                
+                if(game[i][0].getStatus() == 'x'){
                     gameStatus = gameStatusTypes::xPlayerWin;
                 }
-                else if(game[row][0].getStatus() == 'o') {
+                else if(game[i][0].getStatus() == 'o') {
                     gameStatus = gameStatusTypes::oPlayerWin;
                 }
             }
             // checks cols
-            if(game[0][row].getStatus() == game[1][row].getStatus() && game[1][row].getStatus() == game[2][row].getStatus()){
-                //std::cout << row << " " << game[row][0].getStatus() << " " << game[row][1].getStatus() << " " << game[row][2].getStatus() << std::endl;
-                if(game[0][row].getStatus() == 'x'){
+            if(game[0][i].getStatus() == game[1][i].getStatus() && game[1][i].getStatus() == game[2][i].getStatus()){
+                
+                if(game[0][i].getStatus() == 'x'){
                     gameStatus = gameStatusTypes::xPlayerWin;
                 }
-                else if(game[0][row].getStatus() == 'o') {
+                else if(game[0][i].getStatus() == 'o') {
                     gameStatus = gameStatusTypes::oPlayerWin;
                 }
             }
+            
         }
-        
-       // gameStatus = gameStatusTypes::xPlayerWin;
+        // check diagonals
+        if(game[0][0].getStatus() == game[1][1].getStatus() && game[1][1].getStatus() == game[2][2].getStatus()){
+                
+            if(game[0][0].getStatus() == 'x'){
+                gameStatus = gameStatusTypes::xPlayerWin;
+            }
+            else if(game[0][0].getStatus() == 'o') {
+                gameStatus = gameStatusTypes::oPlayerWin;
+            }
+         }
+         if(game[0][2].getStatus() == game[1][1].getStatus() && game[1][1].getStatus() == game[0][2].getStatus()){
+                
+            if(game[0][0].getStatus() == 'x'){
+                gameStatus = gameStatusTypes::xPlayerWin;
+            }
+            else if(game[0][0].getStatus() == 'o') {
+                gameStatus = gameStatusTypes::oPlayerWin;
+            }
+         }
+
+         for(int row = 0; row < 3; row++){
+             for( int col = 0; col < 3; col++){
+                 if(game[row][col].getStatus() == placeStatus::empty){
+                    tieGame = false;
+                    break;
+                 }
+             }
+         }
+         if(tieGame){
+             gameStatus = gameStatusTypes::gameTie;
+         }
         
     }
     bool add(Place place){
