@@ -47,6 +47,7 @@ class Board{
             
         }
         // check diagonals
+        
         if(game[0][0].getStatus() == game[1][1].getStatus() && game[1][1].getStatus() == game[2][2].getStatus()){
                 
             if(game[0][0].getStatus() == 'x'){
@@ -56,16 +57,18 @@ class Board{
                 gameStatus = gameStatusTypes::oPlayerWin;
             }
          }
-         if(game[0][2].getStatus() == game[1][1].getStatus() && game[1][1].getStatus() == game[0][2].getStatus()){
+         if(game[0][2].getStatus() == game[1][1].getStatus() && game[1][1].getStatus() == game[2][0].getStatus()){
                 
-            if(game[0][0].getStatus() == 'x'){
+            if(game[0][2].getStatus() == 'x'){
                 gameStatus = gameStatusTypes::xPlayerWin;
             }
-            else if(game[0][0].getStatus() == 'o') {
+            else if(game[0][2].getStatus() == 'o') {
                 gameStatus = gameStatusTypes::oPlayerWin;
             }
          }
+         
 
+        // check for tied game
          for(int row = 0; row < 3; row++){
              for( int col = 0; col < 3; col++){
                  if(game[row][col].getStatus() == placeStatus::empty){
@@ -77,12 +80,10 @@ class Board{
          if(tieGame){
              gameStatus = gameStatusTypes::gameTie;
          }
-        
     }
-    bool add(Place place){
-        game[place.getRow()][place.getCol()] = place;
 
-        return true;
+    void add(Place place){
+        game[place.getRow()][place.getCol()] = place;
     }
 
     bool checkPlace(int row, int col){
@@ -94,19 +95,19 @@ class Board{
     void display(){
         std::cout << "   ";
         for(int i =0; i < 3; i++){std::cout << i << " ";}
-        std::cout << std::endl;
-        std::cout << "   ";
-        for(int i =0; i < 3; i++){std::cout << "-" << " ";}
-        std::cout << std::endl;
-        for (int row = 0; row < 3; row++){
-            std::cout << row << "| ";
-            for(int col = 0; col < 3; col++){
-
-                std::cout << game[row][col].getStatus() << " " ;
-            }
-            
             std::cout << std::endl;
-        }
+            std::cout << "   ";
+        for(int i =0; i < 3; i++){std::cout << "-" << " ";}
+            std::cout << std::endl;
+            for (int row = 0; row < 3; row++){
+                std::cout << row << "| ";
+                for(int col = 0; col < 3; col++){
+
+                    std::cout << game[row][col].getStatus() << " " ;
+                }
+                
+                std::cout << std::endl;
+            }
     }
     
     

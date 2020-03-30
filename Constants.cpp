@@ -12,8 +12,8 @@ namespace placeStatus{
 };
 
 namespace gameStatusTypes{
-    static const std::string xPlayerWin = "Congradulations Player X you Won!";
-    static const std::string oPlayerWin = "Congradulations Player O you Won!";
+    static const std::string xPlayerWin = "Congratulations Player X you Won!";
+    static const std::string oPlayerWin = "Congratulations Player O you Won!";
     static const std::string gameInProgress = "gameInProcess";
     static const std::string gameTie = "Game Tied!";
 };
