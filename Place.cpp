@@ -12,8 +12,7 @@ class Place{
     public:
     Place(char status):status(status){}
     Place(char status, int row, int col):status(status), row(row), col(col){
-        // check if valid place'
-        //std::cout << row << col << status << std::endl;
+        
     }
     char getStatus(){return status;}
     int getRow(){return row;}
